@@ -3,6 +3,7 @@ package main;
 import object.OBJ_Chest;
 import object.OBJ_CraftingTable;
 import object.OBJ_Key;
+import object.OBJ_OpenChest;
 import object.OBJ_WoodenDoorBack;
 import object.OBJ_WoodenDoorFront;
 import object.OBJ_WoodenDoorLeft;
@@ -30,14 +31,16 @@ public class AssetSetter {
         gp.obj[0].worldX = 45 * gp.tileSize;
         gp.obj[0].worldY = 48 * gp.tileSize;
         
-        gp.obj[0] = new OBJ_Key();
-        gp.obj[0].worldX = 44 * gp.tileSize;
-        gp.obj[0].worldY = 48 * gp.tileSize;
-        
         
         gp.obj[1] = new OBJ_Chest();
         gp.obj[1].worldX = 47 * gp.tileSize;
         gp.obj[1].worldY = 47 * gp.tileSize;
+        
+        gp.obj[2] = new OBJ_OpenChest();
+        
+        gp.obj[3] = new OBJ_CraftingTable();
+        gp.obj[3].worldX = 44 * gp.tileSize;
+        gp.obj[3].worldY = 48 * gp.tileSize;
         
         
         
