@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import object.SuperObject;
 import tile.TileManager;
 
 
@@ -40,7 +41,11 @@ public class GamePanel extends JPanel implements Runnable {
     
     public CollisionChecker cChecker = new CollisionChecker(this);
     
+    public AssetSetter aSetter = new AssetSetter(this);
+    
     public Player player = new Player(this, keyH);
+    
+    public SuperObject obj[] = new SuperObject[20];
     
     
     public GamePanel() {
@@ -51,8 +56,12 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         
-        
-        
+        }
+    
+    public void setupGame() {
+            
+        aSetter.setObject();
+          
     }
     
     public void startGameThread() {
@@ -91,7 +100,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             if(timer >= 1000000000) {
-                System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
                 
@@ -111,6 +119,12 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;
         
         tileM.draw(g2);
+        
+        for(int i = 0; i < obj.length; i++) {
+            if(obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
         
         player.draw(g2);
                 
