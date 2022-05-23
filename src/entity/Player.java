@@ -10,6 +10,7 @@ import main.GamePanel;
 import main.KeyHandler;
 
 import javax.imageio.ImageIO;
+import main.UtilityTool;
 
 public class Player extends Entity {
     
@@ -19,7 +20,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     
-    public int hasKey = 0;
+    //public int hasKey = 0;
     
     
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -47,30 +48,38 @@ public class Player extends Entity {
     
     public void setDefaultValues() {
         
-        worldX = gp.tileSize * 50;
-        worldY = gp.tileSize * 48;
+        worldX = gp.tileSize * 25;
+        worldY = gp.tileSize * 25;
         speed = 2;
         direction = "down";
     }
 
     public void getPlayerImage() {
         
-        try {
+         upr = setup("upr");
+         upl = setup("upl");
+         downr = setup("downr");
+         downl = setup("downl");
+         leftr = setup("leftr");
+         leftl = setup("leftl");
+         rightr = setup("rightr");
+         rightl = setup("rightl");
+         
+    }
+    
+    public BufferedImage setup(String imageName) {
+        
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+                 try {
+            image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
             
-            upr = ImageIO.read(getClass() .getResourceAsStream("/player/upr.png"));
-            upl = ImageIO.read(getClass() .getResourceAsStream("/player/upl.png"));
-            downr = ImageIO.read(getClass() .getResourceAsStream("/player/downr.png"));
-            downl = ImageIO.read(getClass() .getResourceAsStream("/player/downl.png"));
-            leftr = ImageIO.read(getClass() .getResourceAsStream("/player/leftr.png"));
-            leftl = ImageIO.read(getClass() .getResourceAsStream("/player/leftl.png"));
-            rightr = ImageIO.read(getClass() .getResourceAsStream("/player/rightr.png"));
-            rightl = ImageIO.read(getClass() .getResourceAsStream("/player/rightl.png"));
-
-
-        } catch(IOException e) {
+        }catch(IOException e) {
             
             e.printStackTrace();
         }
+                 return image;
     }
     
     public void update () {
@@ -134,28 +143,7 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         
         if(i != 999) {
-            String objectName = gp.obj[i].name;
             
-            switch (objectName) {
-            case "Key":
-                gp.playSE(0);
-                hasKey++;
-                gp.obj[i] = null;
-                gp.ui.showMessage("You found a key.");
-                
-                break;
-                    
-            case "Chest":
-                if (hasKey > 0) {
-                    gp.obj[i] = null;
-                    hasKey--;
-                }
-                break;
-            
-            case "Crafting Table":
-                
-                
-            }
         }
         
     }
@@ -166,46 +154,46 @@ public class Player extends Entity {
         
         switch(direction) {
             
-            case "up":
-                if(spriteNum == 1) {
-                    image = upr;
-                }
-                if (spriteNum == 2) {
-                    image = upl;
-                }
+        case "up":
+            if(spriteNum == 1) {
+                image = upr;
+            }
+            if (spriteNum == 2) {
+                image = upl;
+            }
                 
-                break;
-            case "down":
-                if(spriteNum == 1) {
-                    image = downr;
-                }
-                if (spriteNum == 2) {
-                    image = downl;
-                }
+            break;
+        case "down":
+            if(spriteNum == 1) {
+                image = downr;
+            }
+            if (spriteNum == 2) {
+                image = downl;
+            }
                 
-                break;
-            case "left":
-                if(spriteNum == 1) {
-                    image = leftr;
-                }
-                if (spriteNum == 2) {
-                    image = leftl;
-                }
+            break;
+        case "left":
+            if(spriteNum == 1) {
+                image = leftr;
+            }
+            if (spriteNum == 2) {
+                image = leftl;
+            }
                 
-                break;
-            case "right":
-                if(spriteNum == 1) {
-                    image = rightr;
-                }
-                if (spriteNum == 2) {
-                    image = rightl;
-                }
+            break;
+        case "right":
+            if(spriteNum == 1) {
+                image = rightr;
+            }
+            if (spriteNum == 2) {
+                image = rightl;
+            }
                 
-                break;
+            break;
                 
         }
         
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
 
         
         
