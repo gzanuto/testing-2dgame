@@ -14,7 +14,7 @@ import main.UtilityTool;
 
 public class Player extends Entity {
     
-    GamePanel gp;
+    
     KeyHandler keyH;
     
     public final int screenX;
@@ -25,7 +25,8 @@ public class Player extends Entity {
     
     public Player(GamePanel gp, KeyHandler keyH) {
         
-        this.gp = gp;
+        super(gp);
+        
         this.keyH = keyH;
         
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -53,33 +54,19 @@ public class Player extends Entity {
         speed = 2;
         direction = "down";
     }
+    
 
     public void getPlayerImage() {
         
-         upr = setup("upr");
-         upl = setup("upl");
-         downr = setup("downr");
-         downl = setup("downl");
-         leftr = setup("leftr");
-         leftl = setup("leftl");
-         rightr = setup("rightr");
-         rightl = setup("rightl");
+         upr = setup("/player/upr");
+         upl = setup("/player/upl");
+         downr = setup("/player/downr");
+         downl = setup("/player/downl");
+         leftr = setup("/player/leftr");
+         leftl = setup("/player/leftl");
+         rightr = setup("/player/rightr");
+         rightl = setup("/player/rightl");
          
-    }
-    
-    public BufferedImage setup(String imageName) {
-        
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-                 try {
-            image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            
-        }catch(IOException e) {
-            
-            e.printStackTrace();
-        }
-                 return image;
     }
     
     public void update () {
@@ -109,12 +96,15 @@ public class Player extends Entity {
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
             
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+            
             if(collisionOn == false) {
                 
                 switch(direction) {
                 case "up":
                     worldY -= speed;
-                    break;
+                    break;  
                 case "down":
                     worldY += speed;
                     break;
@@ -138,7 +128,7 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         
-        } 
+        }
     }
     public void pickUpObject(int i) {
         
@@ -146,6 +136,12 @@ public class Player extends Entity {
             
         }
         
+    }
+    
+    public void interactNPC(int i ) {
+        if (i != 999) {
+            System.out.println("LULA");
+        }
     }
     
     public void draw(Graphics2D g2) {

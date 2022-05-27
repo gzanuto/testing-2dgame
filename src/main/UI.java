@@ -49,7 +49,8 @@ public class UI {
         }
     }
     public void drawPauseScreen() {
-        
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
         String text = "PAUSED";
         int x = getXforCenteredText(text);
         
