@@ -1,19 +1,6 @@
 package main;
 
-import object.OBJ_Chest;
-import object.OBJ_CraftingTable;
-import object.OBJ_Key;
-import object.OBJ_OpenChest;
-import object.OBJ_Tree;
-import object.OBJ_WoodenDoorBack;
-import object.OBJ_WoodenDoorFront;
-import object.OBJ_WoodenDoorLeft;
-import object.OBJ_WoodenDoorRight;
-import object.OBJ_WoodenFloor;
-import object.OBJ_WoodenWallBack;
-import object.OBJ_WoodenWallFront;
-import object.OBJ_WoodenWallLeft;
-import object.OBJ_WoodenWallRight;
+import entity.NPC_Oldman;
 
 
 public class AssetSetter {
@@ -29,5 +16,13 @@ public class AssetSetter {
     public void setObject() {
        
     }
+    public void setNPC() {
+        
+        gp.npc[0] = new NPC_Oldman(gp);
+        gp.npc[0].worldX = gp.tileSize*27;
+        gp.npc[0].worldY = gp.tileSize*27;
+        
+    }
     
 }
+
