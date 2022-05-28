@@ -13,6 +13,7 @@ public class NPC_Oldman extends Entity {
         speed = 1;
         
         getImage();
+        setDialogue();
     }
     
     public void getImage() {
@@ -26,6 +27,16 @@ public class NPC_Oldman extends Entity {
          rightr = setup("/npc/blacksmithright");
          rightl = setup("/npc/blacksmithright");
          
+    }
+    
+    public void setDialogue() {
+        dialogues[0] = "UGAH!";
+        dialogues[1] = "Welcome to the Blacksmith!";
+        dialogues[2] = "I'll take care of your weapons and tools!";
+        dialogues[3] = "All you need is provide the materials I need to improve them!";
+        dialogues[4] = "";
+        dialogues[0] = "UGAH!";
+        
     }
     
     public void setAction() {
@@ -51,6 +62,11 @@ public class NPC_Oldman extends Entity {
         
             actionLockCounter = 0;
         }
+    }
+    
+    public void speak() {
+        
+        super.speak();
     }
     
 }

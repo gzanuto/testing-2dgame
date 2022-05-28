@@ -23,7 +23,6 @@ public class OBJ_Corpse extends SuperObject {
             e.printStackTrace();
             
         }
-        collision = true;
     }
     
 }
