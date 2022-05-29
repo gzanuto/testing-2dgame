@@ -53,6 +53,8 @@ public class Player extends Entity {
         worldY = gp.tileSize * 25;
         speed = 2;
         direction = "down";
+        maxLife = 10;
+        life = maxLife;
     }
     
 
@@ -138,10 +140,14 @@ public class Player extends Entity {
         
     }
     
-    public void interactNPC(int i ) {
+    public void interactNPC(int i) {
         if (i != 999) {
-            System.out.println("LULA");
+            if(gp.keyH.enterPressed == true) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
         }
+        gp.keyH.enterPressed = false;
     }
     
     public void draw(Graphics2D g2) {
