@@ -1,29 +1,16 @@
 package object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import entity.Entity;
 import main.GamePanel;
 
-
-public class OBJ_CraftingTable extends SuperObject {
-    
-    GamePanel gp;
+public class OBJ_CraftingTable extends Entity {
     
     public OBJ_CraftingTable(GamePanel gp) {
         
-        this.gp = gp;
+        super(gp);
         
         name = "Crafting Table";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/craftingtable.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            
-        }catch (IOException e) {
-            
-            e.printStackTrace();
-            
-        }
-        collision = true;
+        downr = setup("/objects/craftingtable");
     }
     
 }

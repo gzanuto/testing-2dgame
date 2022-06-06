@@ -1,22 +1,17 @@
 package object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import entity.Entity;
+import main.GamePanel;
 
-
-public class OBJ_WoodenDoorBack extends SuperObject {
+public class OBJ_WoodenDoorBack extends Entity {
     
-    public OBJ_WoodenDoorBack() {
+    public OBJ_WoodenDoorBack(GamePanel gp) {
+
+        super(gp);
         
         name = "Wooden Door Back";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/woodendoorback.png"));
-            
-        }catch (IOException e) {
-            
-            e.printStackTrace();
-            
-        }
+        downr = setup("/objects/woodendoorback");
+        collision = true;
     }
     
 }

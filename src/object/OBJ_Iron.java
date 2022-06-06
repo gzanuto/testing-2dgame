@@ -1,28 +1,16 @@
 package object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import entity.Entity;
 import main.GamePanel;
 
+public class OBJ_Iron extends Entity {
 
-public class OBJ_Iron extends SuperObject {
-    
-    GamePanel gp;
-    
     public OBJ_Iron(GamePanel gp) {
         
-        this.gp = gp;
+        super(gp);
         
         name = "Iron";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/iron.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            
-        }catch (IOException e) {
-            
-            e.printStackTrace();
-            
-        }
+        downr = setup("/objects/iron");
         collision = true;
     }
     

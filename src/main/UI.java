@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import entity.Entity;
 import object.OBJ_Heart;
-import object.OBJ_Key;
-import object.SuperObject;
 
 
 public class UI {
@@ -27,7 +27,7 @@ public class UI {
         
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         
-        SuperObject heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         fulllife = heart.image;
         halflife = heart.image2;
         nolife = heart.image3;

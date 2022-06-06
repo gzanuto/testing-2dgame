@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_Oldman;
+import object.OBJ_Chest;
 
 
 public class AssetSetter {
@@ -14,6 +15,9 @@ public class AssetSetter {
     }
     
     public void setObject() {
+        gp.obj[0] = new OBJ_Chest(gp);
+        gp.obj[0].worldX = gp.tileSize*25;
+        gp.obj[0].worldY = gp.tileSize*24;
        
     }
     public void setNPC() {
