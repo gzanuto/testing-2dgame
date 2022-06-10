@@ -1,8 +1,6 @@
 package entity;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -101,6 +99,9 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             gp.eHandler.checkEvent();
 
             gp.keyH.enterPressed = false;
@@ -135,6 +136,15 @@ public class Player extends Entity {
             }
         
         }
+
+        if(invincible == true) {
+            invincibleCounter++;
+            if(invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
+
     }
     public void pickUpObject(int i) {
         
@@ -151,6 +161,17 @@ public class Player extends Entity {
                 gp.npc[i].speak();
             }
         }
+    }
+
+    public void contactMonster(int i) {
+
+        if (i != 999) {
+            if(invincible ==false) {
+                life -= 1;
+                invincible = true;
+            }
+        }
+
     }
     
     public void draw(Graphics2D g2) {
@@ -197,11 +218,18 @@ public class Player extends Entity {
             break;
                 
         }
-        
+
+        if(invincible == true) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
         g2.drawImage(image, screenX, screenY, null);
 
-        
-        
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
+//        g2.setFont(new Font("Arial", Font.PLAIN, 26));
+//        g2.setColor(Color.white);
+//        g2.drawString("Invincible: "+invincibleCounter, 10, 400);
     }
     
 }
